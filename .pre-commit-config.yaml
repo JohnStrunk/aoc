@@ -11,10 +11,14 @@ repos:
   - repo: https://github.com/pre-commit/pre-commit-hooks
     rev: v4.5.0
     hooks:
-      - id: check-added-large-files  # Check for large files
-      - id: check-merge-conflict     # Check for merge conflict strings
+      - id: check-added-large-files  # Prevents giant files from being committed
+      - id: check-json               # Check that JSON files are valid
+      - id: check-merge-conflict     # Check merge conflict strings
+      - id: check-symlinks           # Ensure symlinks have a valid target
+      - id: check-toml               # Ensure toml files are valid
+      - id: check-xml                # Check that XML files are valid
+      - id: end-of-file-fixer        # File is empty or ends with one newline
       - id: fix-byte-order-marker    # Forbid utf-8 byte order marker
-      - id: end-of-file-fixer        # Files end w/ newline
       - id: trailing-whitespace      # Trims trailing whitespace
         args: [--markdown-linebreak-ext=md]
 
@@ -28,3 +32,8 @@ repos:
     rev: "v0.37.0"
     hooks:
       - id: markdownlint
+
+  - repo: https://github.com/jumanjihouse/pre-commit-hooks
+    rev: "3.0.0"
+    hooks:
+      - id: shellcheck
