@@ -6,5 +6,8 @@
 	},
 	"postCreateCommand": {
 		"Initialize pre-commit environment": "nohup sh -c 'pre-commit install -f --install-hooks &' > /dev/null"
+	},
+	"postAttachCommand": {
+		"Update dotfiles": "chezmoi update --apply --verbose"
 	}
 }
