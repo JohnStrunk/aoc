@@ -1,5 +1,5 @@
 import assert from 'assert';
-import { charToRPS, compareRPS, convertLine, RPS, scoreRound } from './day2Module';
+import { charToRPS, compareRPS, convertLine, RPS, scoreRound } from './day2';
 
 describe('charToRPS', function(){
     it('should return ROCK when given A', function(){
