@@ -37,6 +37,47 @@ export function convertLine(line: string): RPS[] {
     return line.split(' ').map(charToRPS);
 }
 
+// Convert a line of input into an array of RPS, but for part 2 where the 2nd
+// character is the desired result, not the player's choice
+export function lineResultToRPS(line: string): RPS[] {
+    const chars = line.split(' ');
+
+    let player1: RPS = charToRPS(chars[0]);
+    let player2: RPS = RPS.ROCK;
+    switch (chars[1]) {
+        case 'X': // need to lose
+            switch (player1) {
+                case RPS.ROCK:
+                    player2 = RPS.SCISSORS;
+                    break;
+                case RPS.PAPER:
+                    player2 = RPS.ROCK;
+                    break;
+                case RPS.SCISSORS:
+                    player2 = RPS.PAPER;
+                    break;
+            }
+            break;
+        case 'Y': // need to tie
+            player2 = player1;
+            break;
+        case 'Z': // need to win
+            switch (player1) {
+                case RPS.ROCK:
+                    player2 = RPS.PAPER;
+                    break;
+                case RPS.PAPER:
+                    player2 = RPS.SCISSORS;
+                    break;
+                case RPS.SCISSORS:
+                    player2 = RPS.ROCK;
+                    break;
+            }
+            break;
+        }
+    return [player1, player2];
+    }
+
 // Score a round of rock-paper-scissors
 export function scoreRound(values: RPS[]): number {
     let score = 0;
@@ -73,6 +114,14 @@ export function scoreInput(input: string[]): number {
     let score = 0;
     for (const line of input) {
         score += scoreRound(convertLine(line));
+    }
+    return score;
+}
+
+export function scoreInputPart2(input: string[]): number {
+    let score = 0;
+    for (const line of input) {
+        score += scoreRound(lineResultToRPS(line));
     }
     return score;
 }
