@@ -10,7 +10,7 @@ export function lineToCalibrationValueDigitOnly(line: string): number {
     }
     const match1 = line.match("^[^0-9]*([0-9])[^0-9]*$");
     if (match1) {
-        const number = parseInt(match1[1] + match1[1]);
+        const number = parseInt(match1[1] + match1[1], 10);
         return number;
     }
 
@@ -47,8 +47,8 @@ export function lineToCalibrationValueWithWords(line: string): number {
     }
     const first = matchList[0][0];
     const last = matchList[matchList.length - 1][0];
-    const value = parseInt(parseWordNumber(first) + parseWordNumber(last));
-    console.log(line, first, last, value);
+    const value = parseInt(parseWordNumber(first) + parseWordNumber(last), 10);
+    // console.log(line, first, last, value);
     return value;
 }
 
