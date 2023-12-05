@@ -6,7 +6,7 @@ import {
     sumGameIds,
 } from './day02';
 
-describe('Day 2', () => {
+describe('2023 - Day 2', () => {
     describe('parseGame', () => {
         const testCases: [string, Game][] = [
             ['Game 1: 3 blue, 4 red; 1 red, 2 green, 6 blue; 2 green', new Game(1, 4, 2, 6)],

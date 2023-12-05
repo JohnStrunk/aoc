@@ -1,6 +1,6 @@
 #! /usr/bin/env -S npx ts-node
 
-import { readLines } from "./common";
+import { readLines, trimLines } from "./common";
 
 export function lineToCalibrationValueDigitOnly(line: string): number {
     const match2 = line.match("^[^0-9]*([0-9]).*([0-9])[^0-9]*$");
@@ -40,9 +40,6 @@ export function lineToCalibrationValueWithWords(line: string): number {
     const match = line.matchAll(/zero|one|two|three|four|five|six|seven|eight|nine|[0-9]/g);
     const matchList = Array.from(match);
     if (matchList.length === 0) {
-        console.log(line);
-        console.log(match);
-        console.log(matchList);
         throw("No match for line: " + line);
     }
     const first = matchList[0][0];
@@ -54,7 +51,7 @@ export function lineToCalibrationValueWithWords(line: string): number {
 
 if (require.main === module) {
     (async () => {
-        const lines = await readLines();
+        const lines = trimLines(await readLines());
 
         // const calibrationValues = lines.map(lineToCalibrationValueDigitOnly);
         // const sum = calibrationValues.reduce((a, b) => a + b, 0);

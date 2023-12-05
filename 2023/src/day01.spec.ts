@@ -4,7 +4,7 @@ import {
     lineToCalibrationValueWithWords
 } from './day01';
 
-describe('day01', function() {
+describe('2023 - Day 1', function() {
     describe('lineToCalibrationValue', function() {
         it('should parse a number-only line', function() {
             assert.equal(lineToCalibrationValueDigitOnly('23'), 23);
@@ -50,6 +50,9 @@ describe('day01', function() {
             it(`should parse ${line}`, function() {
                 assert.equal(lineToCalibrationValueWithWords(line), expected);
             });
+        });
+        it.skip('should handle overlapping number words', function() {
+            assert.equal(lineToCalibrationValueWithWords('sevenine'), 79);
         });
     });
 });

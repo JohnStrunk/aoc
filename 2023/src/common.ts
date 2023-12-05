@@ -13,3 +13,7 @@ export async function readLines() {
     }
     return lines;
 }
+
+export function trimLines(lines: string[]): string[] {
+    return lines.map(line => line.trim());
+}
